@@ -1,6 +1,9 @@
 import styled from "styled-components";
-
+import { useAuth0 } from "@auth0/auth0-react";
 const Contact = () => {
+  
+  const { isAuthenticated,user } = useAuth0();
+
   const Wrapper = styled.section`
     padding: 9rem 0 5rem 0;
     text-align: center;
@@ -53,6 +56,7 @@ const Contact = () => {
               name="username"
               required
               autoComplete="off"
+              value={isAuthenticated?user.name:"" }
             />
 
             <input
@@ -61,6 +65,7 @@ const Contact = () => {
               placeholder="Email"
               autoComplete="off"
               required
+              value={isAuthenticated?user.email:"" }
             />
 
             <textarea
